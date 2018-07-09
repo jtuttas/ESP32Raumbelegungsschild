@@ -51,7 +51,7 @@ WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "europe.pool.ntp.org", 7200, 60000);
 //static const char* ssid = "MMBBS-Intern";
 const char *ssid = "FRITZ!Box Fon WLAN 7390";
-const char *password = "9621935071973051";
+const char *password = "geheim";
 const char *mqtt_server = "service.joerg-tuttas.de";
 
 // Definition der Schulstunden (plus 1 Minute)
