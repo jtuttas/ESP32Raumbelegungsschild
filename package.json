@@ -1,0 +1,17 @@
+{
+  "name": "raumbelegung",
+  "version": "1.0.0",
+  "description": "Server zur visualisierung der Raumbelegung",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dr. Tuttas",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.3.4"
+  },
+  "dependencies": {
+    "mqtt": "^2.18.1"
+  }
+}

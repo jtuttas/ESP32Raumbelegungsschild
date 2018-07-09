@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.shell.windows": "cmd.exe",
+    "terminal.integrated.shellArgs.windows": [],
+    "files.exclude": {
+        "**/*.js": { "when": "$(basename).ts"},
+        "**/*.*.map": true,
+        "**/node_modules":true
+    },
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Raumbelegung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .belegt {
+            background-color: lightcoral;
+            border: 2px;
+            border-color: white;
+            border-style: solid;
+        }
+
+        .frei {
+            background-color: lightgreen;
+            border: 2px;
+            border-color: white;
+            border-style: solid;
+        }
+
+        .RAUM {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .KNAME {
+            padding-left: 1em;
+            font-size: 18px;
+            float: left;
+        }
+
+        .FACH {
+            padding-left: 1em;
+            font-size: 18px;
+            float: left;
+        }
+
+        .TEACHER_ID {
+            padding-left: 1em;
+            font-size: 18px;
+            float: left;
+        }
+    </style>
+    <script>     
+        ws = new WebSocket("ws://127.0.0.1:3000/mmbbs/");
+        ws.onmessage = function (event) {
+            console.log("Websocket receive:" + event.data);
+            var jobj = jQuery.parseJSON(event.data);
+            jobj.forEach(element => {
+                var raum = element.Raum;
+                if (raum) {
+                    raum = raum.replace('.', '');
+                    //console.log('ändere '+raum);
+                    if (element.KNAME == "frei") {
+                        $("#c" + raum).removeClass("belegt");
+                        $("#c" + raum).addClass("frei");
+                    }
+                    else {
+                        $("#c" + raum).removeClass("frei");
+                        $("#c" + raum).addClass("belegt");
+                    }
+                    $("#r" + raum).text("Raum " + element.Raum);
+                    $("#k" + raum).text("" + element.KNAME);
+                    $("#f" + raum).text("" + element.Fach);
+                    $("#l" + raum).text("" + element.TEACHER_ID);
+                }
+            });
+        };
+    </script>
+</head>
+
+<body>

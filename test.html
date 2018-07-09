@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        .belegt {
+            background-color: lightcoral;
+            border: 2px;
+            border-color: white;
+            border-style: solid;
+        }
+
+        .frei {
+            background-color: lightgreen;
+            border: 2px;
+            border-color: white;
+            border-style: solid;
+        }
+
+        .RAUM {
+            font-size: 3em;
+            text-align: center;
+        }
+
+        .KNAME {
+            padding-left: 1em;
+            font-size: 2em;
+            float: left;
+        }
+
+        .FACH {
+            padding-left: 1em;
+            font-size: 2em;
+            float: left;
+        }
+
+        .TEACHER_ID {
+            padding-left: 1em;
+            font-size: 2em;
+            float: left;
+        }
+    </style>
+     <script>
+        console.log('los gehts');
+        ws = new WebSocket("ws://127.0.0.1:3000/mmbbs/2");
+        ws.onmessage = function (event) {
+            console.log("Websocket receive:" + event.data);
+            var jobj = jQuery.parseJSON(event.data);
+            jobj.forEach(element => {
+                var raum = element.Raum;
+                raum=raum.replace('.','');
+                console.log("Raum = (" + raum+")");
+                $("#r" + raum).text("Raum " + raum);
+                $("#k" + raum).text("" + element.KNAME);
+                $("#f" + raum).text("" + element.Fach);
+                $("#l" + raum).text("" + element.TEACHER_ID);
+            });
+        };
+    </script>
+</head>
+
+<body>
+
+
+    <div class="row ">
+        <div class="col-sm-3 belegt">
+            <div class="RAUM">Raum 2.06</div>
+            <div class="KNAME">FIAE15i</div>
+            <div class="FACH">LF 4</div>
+            <div class="TEACHER_ID">TU</div>
+        </div>
+        <div class="col-sm-3 frei">
+            <div class="RAUM">Raum 2.06</div>
+            <div class="KNAME">FIAE15i</div>
+            <div class="FACH">LF 4</div>
+            <div class="TEACHER_ID">TU</div>
+
+        </div>
+        <div class="col-sm-3 frei">
+            <div class="RAUM">Raum 2.06</div>
+            <div class="KNAME">FIAE15i</div>
+            <div class="FACH">LF 4</div>
+            <div class="TEACHER_ID">TU</div>
+
+        </div>
+        <div class="col-sm-3 frei">
+            <div class="RAUM">Raum 2.06</div>
+            <div class="KNAME">FIAE15i</div>
+            <div class="FACH">LF 4</div>
+            <div class="TEACHER_ID">TU</div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 belegt">
+            <div class="RAUM">Raum 2.06</div>
+            <div class="KNAME">FIAE15i</div>
+            <div class="FACH">LF 4</div>
+            <div class="TEACHER_ID">TU</div>
+        </div>
+        <div class="col-sm-3 frei">
+            <div class="RAUM">Raum 2.06</div>
+            <div class="KNAME">FIAE15i</div>
+            <div class="FACH">LF 4</div>
+            <div class="TEACHER_ID">TU</div>
+
+        </div>
+        <div class="col-sm-3 frei">
+            <div class="RAUM">Raum 2.06</div>
+            <div class="KNAME">FIAE15i</div>
+            <div class="FACH">LF 4</div>
+            <div class="TEACHER_ID">TU</div>
+
+        </div>
+        <div class="col-sm-3 frei">
+            <div id="r206" class="RAUM">Raum 2.06</div>
+            <div id="k206" class="KNAME">FIAE15i</div>
+            <div id="f206" class="FACH">LF 4</div>
+            <div id="l206" class="TEACHER_ID">TU</div>
+
+        </div>
+
+    </div>
+   
+</body>
+
+</html>

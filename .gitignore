@@ -1,0 +1,6 @@
+ESP32Raumschild/.pioenvs/*
+ESP32Raumschild/.piolibdeps
+ESP32Raumschild/.vscode/.browse.c_cpp.db*
+ESP32Raumschild/.vscode/c_cpp_properties.json
+ESP32Raumschild/.vscode/launch.json
+node_modules/*
